@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sweet Cake Store</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            background: linear-gradient(to bottom, #fff0f5, #ffe4e1);
+            color: #5a3e36;
+        }
+        header {
+            text-align: center;
+            padding: 2rem;
+            background-color: rgba(255, 182, 193, 0.8);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        header h1 {
+            font-size: 2.5rem;
+            margin: 0;
+        }
+        .cake-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: auto;
+        }
+        .cake-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+        .cake-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+        .cake-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .cake-info {
+            padding: 1rem;
+            text-align: center;
+        }
+        .cake-info h3 {
+            margin: 0.5rem 0;
+            font-size: 1.2rem;
+        }
+        .cake-info p {
+            color: #777;
+            font-size: 0.9rem;
+        }
+        button {
+            background: #ff7f9c;
+            border: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 25px;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        button:hover {
+            background: #ff5176;
+        }
+        /* Animasi Fade-in */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 1s forwards;
+        }
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Sweet Cake Store</h1>
+        <p>Rasa manis, tekstur lembut, dan kenangan indah dalam setiap gigitan</p>
+    </header>
+
+    <div class="cake-container" id="cakeList">
+        <!-- Cake items akan ditambahkan lewat JavaScript -->
+    </div>
+
+    <script>
+        const cakes = [
+            {name: 'Strawberry Delight', desc: 'Rasa stroberi segar dengan krim lembut', img: 'https://images.unsplash.com/photo-1601979031896-6d9f5a5f1c8b'},
+            {name: 'Chocolate Heaven', desc: 'Cokelat premium dengan tekstur moist', img: 'https://images.unsplash.com/photo-1612197527762-9c70919c2cda'},
+            {name: 'Vanilla Dream', desc: 'Vanilla murni dengan topping krim', img: 'https://images.unsplash.com/photo-1586985289403-a3d99e8aafbd'},
+            {name: 'Blueberry Bliss', desc: 'Manisnya blueberry dalam setiap lapisan', img: 'https://images.unsplash.com/photo-1617450365223-2f33accc12b5'}
+        ];
+
+        const cakeList = document.getElementById('cakeList');
+
+        cakes.forEach((cake, index) => {
+            const card = document.createElement('div');
+            card.className = 'cake-card fade-in';
+            card.style.animationDelay = `${index * 0.2}s`;
+
+            card.innerHTML = `
+                <img src="${cake.img}" alt="${cake.name}">
+                <div class="cake-info">
+                    <h3>${cake.name}</h3>
+                    <p>${cake.desc}</p>
+                    <button>Pesan Sekarang</button>
+                </div>
+            `;
+
+            cakeList.appendChild(card);
+        });
+    </script>
+</body>
+</html>
